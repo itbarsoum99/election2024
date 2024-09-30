@@ -3,9 +3,9 @@ import statistics
 
 baseNationalEnvironment = 2.8 
 
-enthusiasmMax = 3.25 
+enthusiasmMax = 0 
 
-enthusiasmMin = -2 
+enthusiasmMin = 0 
 
 historicalAdjustment = 2.2 
 
