@@ -28,12 +28,21 @@ def simNatlEnv(baseEnv):
 	natlEnv = baseNationalEnvironment + errorAdj + enthusiasmAdj + historicalAdj
 	return natlEnv
 
+def fundamentals():
+	issues = [["economy", 0.38, -7], ["immigration", 0.135, -10], ["healthcare", 0.09, 9],  ["abortion", 0.08, 14], ["climate", 0.08, 12], ["rights", 0.06, 16], ["crime", 0.03, -1], ["guns", 0.03, 5], ["liberties", 0.03, ], ["education", 0.02, 0], ["fopo", 0.045, 4]]
+	result = 0
+	for x in range(8):
+		total = issues[x][1] * issues[x][2]
+		result += total
+	return (result*100)		 	
+	
 def election (baseEnvironment):
 	nationalEnvironment = simNatlEnv(baseEnvironment)
+	fun = fundamentals()
 	demEVs = 0
 	for x in range(52):
 		swingAdj = random.uniform(-6.3, 5.0)
-		race = pvi[x] + (polling[x]*1.2) + (nationalEnvironment*0.8) + swingAdj
+		race = (((pvi[x] + polling[x]*1.2)/2 + (nationalEnvironment*0.8) + swingAdj)*0.84) + (fun * 0.16)
 		if race == 0:
 			race = random.choice([-1, 1])
 			print("coin flipped.")

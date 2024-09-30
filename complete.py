@@ -1,11 +1,11 @@
 import random
 import statistics
 
-baseNationalEnvironment = 2.8 
+baseNationalEnvironment = 3.3 
 
-enthusiasmMax = 3.25 
+enthusiasmMax = 0 
 
-enthusiasmMin = -2 
+enthusiasmMin = 0 
 
 historicalAdjustment = 2.2 
 
@@ -28,12 +28,30 @@ def simNatlEnv(baseEnv):
 	natlEnv = baseNationalEnvironment + errorAdj + enthusiasmAdj + historicalAdj
 	return natlEnv
 
+def keys():
+	midterm = -0.5
+	incumbency = -0.8
+	primary = 1 
+	thirdparty = random.uniform(-0.4, 0) 
+	shortecon = random.uniform (0.8, 1) 
+	longecon = 1
+	policy = 1
+	unrest = random.uniform (0.8, 0.9) 
+	scandal = 1
+	charismatic = -1
+	uncharismatic = random.uniform(1, 0.8) 
+	failure = random.uniform(-0.8, -0.5) 
+	success = random.uniform(-1, -0.5)
+	result = midterm + incumbency + primary + thirdparty + shortecon + longecon + policy + unrest + scandal + charismatic + uncharismatic + failure + success
+	return result
+	
 def election (baseEnvironment):
 	nationalEnvironment = simNatlEnv(baseEnvironment)
+	keys = keys() 
 	demEVs = 0
 	for x in range(52):
 		swingAdj = random.uniform(-6.3, 5.0)
-		race = pvi[x] + (polling[x]*1.2) + (nationalEnvironment*0.8) + swingAdj
+		race = pvi[x] + (polling[x]*1.2) + (nationalEnvironment*0.8) + swingAdj + keys
 		if race == 0:
 			race = random.choice([-1, 1])
 			print("coin flipped.")
