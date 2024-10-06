@@ -1,17 +1,13 @@
 import random
 import statistics
 
-baseNationalEnvironment = 2.8 
-
-enthusiasmMax = 3.25 
-
-enthusiasmMin = -2 
+baseNationalEnvironment = 2.7 
 
 historicalAdjustment = 2.2 
 
 pvi = [-15, -8, -2, -16, 13, 4, 7, 7, 43, -3, -3, 14, -18, 7, -11, -6, -10, -16, -12, 2, 9, -6,  14, 15, -1, 1, -11, -10, -11, -13, 0, -1, 1, 6, 3, 10, -3, -20, -6, -20, 6, -2, 8, -8, -16, -14, -5, -13, 16, 3, 8, -22, -2, -25.0]
 
-polling = [0, 0, -1.0, 0, 0, 0, 0, 0, 0, -4.0, -0.6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.9, 6.0, 0, 0, 0, 0, 8.6, 1.5, 7.2, 0, 0, 0, 0.1, 0, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.9, 0]
+polling = [0, 0, -1.2, 0, 0, 0, 0, 0, 0, -4.1, -0.7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.8, 5.9, 0, 0, 0, 0, 8.8, 1.4, 7.1, 0, 0, 0, -0.4, 0, 0, 0, 0, 0.8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.8, 0]
 
 evs = [9, 3, 11, 6, 54, 10, 7, 3, 3, 30, 16, 4, 4, 19, 11, 6, 6, 8, 8, 2, 1, 1, 10, 11, 15, 10, 6, 10, 4, 4, 1, 6, 4, 14, 5, 28, 16, 3, 17, 7, 8, 19, 4, 9, 3, 11, 40, 6, 3, 13, 12, 4, 10, 3]
 
@@ -23,7 +19,7 @@ print(len(evs))
 def simNatlEnv(baseEnv):
 	marginOfError = 0.5 * baseEnv
 	errorAdj = random.uniform(-marginOfError, marginOfError)
-	enthusiasmAdj = random.uniform(enthusiasmMin, enthusiasmMax)
+	enthusiasmAdj = statistics.mean([-1, 5, 5, -1])*0.25 
 	historicalAdj = random.uniform(-historicalAdjustment, historicalAdjustment)
 	natlEnv = baseNationalEnvironment + errorAdj + enthusiasmAdj + historicalAdj
 	return natlEnv
